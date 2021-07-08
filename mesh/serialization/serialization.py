@@ -69,8 +69,11 @@ def load_from_obj(self, filename):
                 elif line[0] == '#landmark':
                     currLandm = line[1]
                 elif line[0] == 'mtllib':
-                    self.materials_filepath = os.path.join(os.path.dirname(filename), line[1])
-                    self.materials_file = open(self.materials_filepath, 'r').readlines()
+                    try:
+                        self.materials_filepath = os.path.join(os.path.dirname(filename), line[1])
+                        self.materials_file = open(self.materials_filepath, 'r').readlines()
+                    except:
+                        self.materials_filepath = None
 
     self.v = np.array(v)
     self.f = np.array(f) - 1
